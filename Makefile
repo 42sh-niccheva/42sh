@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/02 22:06:54 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/02 22:09:25 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -103,6 +103,7 @@ clean:
 	@rm -rf $(BUILD)/$(DOBJECTS)
 
 fclean: clean
+	@rm -f $(NAME)
 	@rm -f $(BUILD)/$(NAME)
 	@rm -rf $(BUILD)
 
