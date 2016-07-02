@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/02 22:09:25 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/02 23:00:30 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,7 @@ DSOURCES		=	./sources/
 
 DOBJECTS		=	objects/
 
-BUILD			=	./build
+BUILD			=	`pwd`/build
 
 LIBFT			=	libraries/libft/
 LIBLIST			=	libraries/liblist/
@@ -72,16 +72,24 @@ DEPS			=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.d, $(SOURCES))
 
 DEPENDS			=	-MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
-all: makelib $(NAME)
+all: makelib $(BUILD)/$(NAME)
 
-makelib:
-#	./libraries/clone_libraries.sh
-#	make BUILD=$(BUILD)/libft -C $(LIBFT)
-#	make BUILD=$(BUILD)/liblist -C $(LIBLIST)
-#	make BUILD=$(BUILD)/libreadline -C $(LIBREADLINE)
-#	make BUILD=$(BUILD)/libyaml -C $(LIBYAML)
+clone_submodules:
+	@git submodule init
+	@git submodule update
 
-$(NAME): $(OBJECTS)
+update_submodules: clone_submodules
+	@./libraries/enable_rights.sh
+	@git submodule update --remote
+	@./libraries/disable_rights.sh
+
+makelib: clone_submodules
+	make BUILD=$(BUILD)/libft -C $(LIBFT)
+	make BUILD=$(BUILD)/liblist -C $(LIBLIST)
+	make BUILD=$(BUILD)/libreadline -C $(LIBREADLINE)
+	make BUILD=$(BUILD)/libyaml -C $(LIBYAML)
+
+$(BUILD)/$(NAME): $(OBJECTS)
 	@echo "\n\033[0;32m$(NAME) compiled:\t\033[0;m\c"
 	$(CC) $(CFLAGS) -o $(BUILD)/$@ $^ $(INCLUDES) $(LIBRARIES)
 	@ln -sf $(BUILD)/$@ $@
@@ -105,8 +113,16 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(BUILD)/$(NAME)
+
+cleanlib:
+	@make BUILD=$(BUILD)/libft -C $(LIBFT) fclean
+	@make BUILD=$(BUILD)/liblist -C $(LIBLIST) fclean
+	@make BUILD=$(BUILD)/libreadline -C $(LIBREADLINE) fclean
+	@make BUILD=$(BUILD)/libyaml -C $(LIBYAML) fclean
+
+all_clean: fclean cleanlib
 	@rm -rf $(BUILD)
 
 re: fclean all
 
-.PHONY: all makelib clean fclean re
+.PHONY: all makelib clean fclean cleanlib all_clean re
