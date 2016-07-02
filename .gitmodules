@@ -1,0 +1,12 @@
+[submodule "libraries/libft"]
+	path = libraries/libft
+	url = git@github.com:42sh-niccheva/libft.git
+[submodule "libraries/liblist"]
+	path = libraries/liblist
+	url = git@github.com:42sh-niccheva/liblist.git
+[submodule "libraries/libreadline"]
+	path = libraries/libreadline
+	url = git@github.com:42sh-niccheva/libreadline.git
+[submodule "libraries/libyaml"]
+	path = libraries/libyaml
+	url = git@github.com:42sh-niccheva/libyaml.git
