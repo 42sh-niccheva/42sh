@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/02 23:00:30 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/02 23:13:16 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -77,6 +77,7 @@ all: makelib $(BUILD)/$(NAME)
 clone_submodules:
 	@git submodule init
 	@git submodule update
+	@./libraries/disable_rights.sh
 
 update_submodules: clone_submodules
 	@./libraries/enable_rights.sh
