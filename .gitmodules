@@ -10,3 +10,6 @@
 [submodule "libraries/libyaml"]
 	path = libraries/libyaml
 	url = git@github.com:42sh-niccheva/libyaml.git
+[submodule "libraries/libjson"]
+	path = libraries/libjson
+	url = git@github.com:42sh-niccheva/libjson.git
