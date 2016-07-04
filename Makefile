@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/02 23:13:16 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/04 14:54:25 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,18 +25,18 @@ BUILD			=	`pwd`/build
 LIBFT			=	libraries/libft/
 LIBLIST			=	libraries/liblist/
 LIBREADLINE		=	libraries/libreadline/
-LIBYAML			=	libraries/libyaml/
+LIBJSON			=	libraries/libjson/
 
 INCLUDES		=	-I./includes/
 INCLUDES		+=	-I$(LIBFT)includes/
 INCLUDES		+=	-I$(LIBLIST)includes/
 INCLUDES		+=	-I$(LIBREADLINE)includes/
-INCLUDES		+=	-I$(LIBYAML)includes/
+INCLUDES		+=	-I$(LIBJSON)includes/
 
 LIBRARIES		=	-L$(BUILD)/$(LIBFT) -lft
 LIBRARIES		+=	-L$(BUILD)/$(LIBLIST) -llist
 LIBRARIES		+=	-L$(BUILD)/$(LIBREADLINE) -lreadline
-LIBRARIES		+=	-L$(BUILD)/$(LIBYAML) -lyaml
+LIBRARIES		+=	-L$(BUILD)/$(LIBJSON) -ljson
 
 CDPATH			=	builtins/cd/
 ECHOPATH		=	builtins/echo/
@@ -85,10 +85,10 @@ update_submodules: clone_submodules
 	@./libraries/disable_rights.sh
 
 makelib: clone_submodules
-	make BUILD=$(BUILD)/libft -C $(LIBFT)
-	make BUILD=$(BUILD)/liblist -C $(LIBLIST)
-	make BUILD=$(BUILD)/libreadline -C $(LIBREADLINE)
-	make BUILD=$(BUILD)/libyaml -C $(LIBYAML)
+	make BUILD=$(BUILD)/$(LIBFT) -C $(LIBFT)
+	make BUILD=$(BUILD)/$(LIBLIST) -C $(LIBLIST)
+	make BUILD=$(BUILD)/$(LIBREADLINE) -C $(LIBREADLINE)
+	make BUILD=$(BUILD)/$(LIBJSON) -C $(LIBJSON)
 
 $(BUILD)/$(NAME): $(OBJECTS)
 	@echo "\n\033[0;32m$(NAME) compiled:\t\033[0;m\c"
@@ -119,7 +119,7 @@ cleanlib:
 	@make BUILD=$(BUILD)/libft -C $(LIBFT) fclean
 	@make BUILD=$(BUILD)/liblist -C $(LIBLIST) fclean
 	@make BUILD=$(BUILD)/libreadline -C $(LIBREADLINE) fclean
-	@make BUILD=$(BUILD)/libyaml -C $(LIBYAML) fclean
+	@make BUILD=$(BUILD)/libjson -C $(LIBJSON) fclean
 
 all_clean: fclean cleanlib
 	@rm -rf $(BUILD)
