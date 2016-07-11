@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/04 14:54:25 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/11 17:37:45 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -54,6 +54,8 @@ ENV				=	$(ENVPATH)builtin_env.c
 EXIT			=	$(EXITPATH)builtin_exit.c
 
 SETENV			=	$(SETENVPATH)builtin_setenv.c
+SETENV			+=	$(SETENVPATH)builtin_setenv_add_key.c
+SETENV			+=	$(SETENVPATH)builtin_setenv_add_value.c
 
 UNSETENV		=	$(UNSETENVPATH)builtin_unsetenv.c
 
@@ -88,7 +90,7 @@ makelib: clone_submodules
 	make BUILD=$(BUILD)/$(LIBFT) -C $(LIBFT)
 	make BUILD=$(BUILD)/$(LIBLIST) -C $(LIBLIST)
 	make BUILD=$(BUILD)/$(LIBREADLINE) -C $(LIBREADLINE)
-	make BUILD=$(BUILD)/$(LIBJSON) -C $(LIBJSON)
+#	make BUILD=$(BUILD)/$(LIBJSON) -C $(LIBJSON)
 
 $(BUILD)/$(NAME): $(OBJECTS)
 	@echo "\n\033[0;32m$(NAME) compiled:\t\033[0;m\c"
