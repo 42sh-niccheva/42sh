@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/04 14:54:25 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/12 14:28:28 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -114,6 +114,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(BUILD)/$(NAME)
+	@rm -rf $(BUILD)
 
 cleanlib:
 	@make BUILD=$(BUILD)/libft -C $(LIBFT) fclean
