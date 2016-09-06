@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:17:18 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/06 14:08:28 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:21:52 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static int		builtin_setenv_add(int argc, const char **argv)
 		else
 		{
 			hashtable_delete_entry(&elem_hashtable);
+			ft_putstr_fd(argv[0], 2);
+			ft_putendl_fd(": Variable name must"
+						" contain alphanumeric characters.", 2);
 		}
 	}
 	return (value);
@@ -63,7 +66,8 @@ int				builtin_setenv(int argc, const char **argv, char **env)
 	elem_hashtable = NULL;
 	if (argc > 3)
 	{
-		ft_putendl_fd("setenv: Too many arguments.", 2);
+		ft_putstr_fd(argv[0], 2);
+		ft_putendl_fd(": Too many arguments.", 2);
 		value = -1;
 	}
 	else if (argc == 1)
@@ -71,13 +75,9 @@ int				builtin_setenv(int argc, const char **argv, char **env)
 	else
 	{
 		if ((elem_hashtable = hashtable_search_key(g_env, argv[1])) != NULL)
-		{
 			value = builtin_setenv_modify(argc, argv, elem_hashtable);
-		}
 		else
-		{
 			value = builtin_setenv_add(argc, argv);
-		}
 	}
 	return (value);
 }
