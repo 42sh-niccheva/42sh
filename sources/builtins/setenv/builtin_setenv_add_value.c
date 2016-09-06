@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   builtin_setenv_add_value.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/10 10:09:38 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/06 13:28:04 by llapillo         ###   ########.fr       */
+/*   Created: 2016/07/11 11:55:52 by llapillo          #+#    #+#             */
+/*   Updated: 2016/09/06 14:03:23 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins/builtin_echo.h"
+#include "libft.h"
+#include "hashtable.h"
 
-int		builtin_echo(int argc, const char **argv, char **env)
+int		builtin_setenv_add_value(t_hashtable *elem, const char *value)
 {
+	elem->value = ft_strdup(value);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/06 13:23:54 by llapillo         ###   ########.fr        #
+#    Updated: 2016/09/06 13:26:15 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -54,6 +54,8 @@ ENV				=	$(ENVPATH)builtin_env.c
 EXIT			=	$(EXITPATH)builtin_exit.c
 
 SETENV			=	$(SETENVPATH)builtin_setenv.c
+SETENV			+=	$(SETENVPATH)builtin_setenv_add_key.c
+SETENV			+=	$(SETENVPATH)builtin_setenv_add_value.c
 
 UNSETENV		=	$(UNSETENVPATH)builtin_unsetenv.c
 
@@ -65,6 +67,7 @@ BUILTINS		+=	$(SETENV)
 BUILTINS		+=	$(UNSETENV)
 
 SOURCES			=	$(BUILTINS)
+SOURCES			+=	main.c
 
 OBJECTS			=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 
