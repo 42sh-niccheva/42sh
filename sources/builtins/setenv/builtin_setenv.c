@@ -6,11 +6,12 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:17:18 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/06 14:03:58 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/06 14:08:28 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins/builtin_setenv.h"
+#include "builtins/private_builtin_setenv.h"
 #include "hashtable.h"
 
 static int		builtin_setenv_add(int argc, const char **argv)
