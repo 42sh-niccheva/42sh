@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:17:18 by niccheva          #+#    #+#             */
-/*   Updated: 2016/07/11 17:42:43 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/06 11:26:58 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int		builtin_setenv_modify(int argc, const char **argv,
 	return (value);
 }
 
-int		builtin_setenv(int argc, const char **argv, char **env)
+int		builtin_setenv(int argc, const char **argv, __attribute__((unused)) char **env)
 {
 	int			value;
 	t_hashtable	*elem_hashtable;
@@ -65,6 +65,8 @@ int		builtin_setenv(int argc, const char **argv, char **env)
 		ft_putendl_fd("setenv: Too many arguments.", 2);
 		value = -1;
 	}
+	else if (argc == 1)
+		hashtable_display_with_delim(g_env, "=");
 	else
 	{
 		if ((elem_hashtable = hashtable_search_key(g_env, argv[1])) != NULL)
