@@ -1,17 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   general.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/10 10:09:38 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/06 13:28:04 by llapillo         ###   ########.fr       */
+/*   Created: 2016/09/06 10:46:03 by llapillo          #+#    #+#             */
+/*   Updated: 2016/09/08 10:09:25 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins/builtin_echo.h"
+#ifndef GENERAL_H
+# define GENERAL_H
 
-int		builtin_echo(int argc, const char **argv, char **env)
-{
-}
+# include "libft.h"
+# include "list.h"
+# include "hashtable.h"
+
+t_hashtable		*g_env;
+
+void	sh_quit(int value);
+
+#endif

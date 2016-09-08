@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:10:17 by niccheva          #+#    #+#             */
-/*   Updated: 2016/06/10 10:20:49 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/09/08 13:18:26 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,27 @@ int		builtin_exit(int argc, const char **argv, char **env)
 {
 	int		value;
 
-	if (argc < 3)
+	(void)env;
+	value = 0;
+	if (argc > 2)
+		value = -1;
+	else if (argc == 2)
 	{
-		value = get_value(argc, argv, env);
-		if (value >= 0)
-			quit("exit", value);
-		ft_putstr_fd("exit: ", 2);
-		ft_putstr_fd(argv[1], 2);
-		ft_putendl_fd(": numeric argument required", 2);
+		if (argv[1][0] != '-' && !ft_strapply_predicate(argv[1], &ft_isdigit))
+			value = -1;
+		else if (argv[1][0] == '-'
+				&& !ft_strapply_predicate(argv[1] + 1, &ft_isdigit))
+			value = -1;
+		else
+			value = ((256 + ft_atoi(argv[1])) % 256);
+	}
+	if (value < 0)
+	{
+		ft_putstr_fd(argv[0], 2);
+		ft_putendl_fd(": Expression Syntax.", 2);
+		value = 1;
 	}
 	else
-		ft_putendl_fd("exit: too many arguments.", 2);
-	return (-1);
+		sh_quit(value);
+	return (value);
 }

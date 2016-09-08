@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/04 14:54:25 by niccheva         ###   ########.fr        #
+#    Updated: 2016/09/08 11:37:19 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,7 @@ DSOURCES		=	./sources/
 
 DOBJECTS		=	objects/
 
-BUILD			=	`pwd`/build
+BUILD			=	$(PWD)/build
 
 LIBFT			=	libraries/libft/
 LIBLIST			=	libraries/liblist/
@@ -36,7 +36,7 @@ INCLUDES		+=	-I$(LIBJSON)includes/
 LIBRARIES		=	-L$(BUILD)/$(LIBFT) -lft
 LIBRARIES		+=	-L$(BUILD)/$(LIBLIST) -llist
 LIBRARIES		+=	-L$(BUILD)/$(LIBREADLINE) -lreadline
-LIBRARIES		+=	-L$(BUILD)/$(LIBJSON) -ljson
+#LIBRARIES		+=	-L$(BUILD)/$(LIBJSON) -ljson
 
 CDPATH			=	builtins/cd/
 ECHOPATH		=	builtins/echo/
@@ -54,6 +54,8 @@ ENV				=	$(ENVPATH)builtin_env.c
 EXIT			=	$(EXITPATH)builtin_exit.c
 
 SETENV			=	$(SETENVPATH)builtin_setenv.c
+SETENV			+=	$(SETENVPATH)builtin_setenv_add_key.c
+SETENV			+=	$(SETENVPATH)builtin_setenv_add_value.c
 
 UNSETENV		=	$(UNSETENVPATH)builtin_unsetenv.c
 
@@ -65,6 +67,8 @@ BUILTINS		+=	$(SETENV)
 BUILTINS		+=	$(UNSETENV)
 
 SOURCES			=	$(BUILTINS)
+SOURCES			+=	main.c
+SOURCES			+=	sh_quit.c
 
 OBJECTS			=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 
@@ -88,12 +92,12 @@ makelib: clone_submodules
 	make BUILD=$(BUILD)/$(LIBFT) -C $(LIBFT)
 	make BUILD=$(BUILD)/$(LIBLIST) -C $(LIBLIST)
 	make BUILD=$(BUILD)/$(LIBREADLINE) -C $(LIBREADLINE)
-	make BUILD=$(BUILD)/$(LIBJSON) -C $(LIBJSON)
+#	make BUILD=$(BUILD)/$(LIBJSON) -C $(LIBJSON)
 
 $(BUILD)/$(NAME): $(OBJECTS)
 	@echo "\n\033[0;32m$(NAME) compiled:\t\033[0;m\c"
-	$(CC) $(CFLAGS) -o $(BUILD)/$@ $^ $(INCLUDES) $(LIBRARIES)
-	@ln -sf $(BUILD)/$@ $@
+	$(CC) $(CFLAGS) -o $@ $^ $(INCLUDES) $(LIBRARIES)
+	@ln -sf $@ $(NAME)
 
 -include $(OBJECTS:.o=.d)
 
