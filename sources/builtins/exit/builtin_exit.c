@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:10:17 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/07 11:56:40 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/08 10:11:29 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int		builtin_exit(int argc, const char **argv, char **env)
 		ft_putendl_fd(": Expression Syntax.", 2);
 		value = 1;
 	}
+	else
+		sh_quit(value);
 	return (value);
 }

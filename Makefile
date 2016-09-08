@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/06 13:26:15 by llapillo         ###   ########.fr        #
+#    Updated: 2016/09/08 10:14:02 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -59,15 +59,16 @@ SETENV			+=	$(SETENVPATH)builtin_setenv_add_value.c
 
 UNSETENV		=	$(UNSETENVPATH)builtin_unsetenv.c
 
-BUILTINS		=	$(CD)
-BUILTINS		+=	$(ECHO)
-BUILTINS		+=	$(ENV)
-BUILTINS		+=	$(EXIT)
-BUILTINS		+=	$(SETENV)
-BUILTINS		+=	$(UNSETENV)
+BUILTINS		=	$(EXIT)
+#BUILTINS		=	$(CD)
+#BUILTINS		+=	$(ECHO)
+#BUILTINS		+=	$(ENV)
+#BUILTINS		+=	$(SETENV)
+#BUILTINS		+=	$(UNSETENV)
 
 SOURCES			=	$(BUILTINS)
 SOURCES			+=	main.c
+SOURCES			+=	sh_quit.c
 
 OBJECTS			=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 
