@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/08 14:33:22 by llapillo         ###   ########.fr        #
+#    Updated: 2016/09/08 16:03:44 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -65,7 +65,7 @@ UNSETENV		=	$(UNSETENVPATH)builtin_unsetenv.c
 #BUILTINS		+=	$(ENV)
 #BUILTINS		+=	$(EXIT)
 BUILTINS		=	$(SETENV)
-#BUILTINS		+=	$(UNSETENV)
+BUILTINS		+=	$(UNSETENV)
 
 
 SRCSH			=	$(BUILTINS)
