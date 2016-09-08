@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/06 13:26:15 by llapillo         ###   ########.fr        #
+#    Updated: 2016/09/08 11:37:19 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -68,6 +68,7 @@ BUILTINS		+=	$(UNSETENV)
 
 SOURCES			=	$(BUILTINS)
 SOURCES			+=	main.c
+SOURCES			+=	sh_quit.c
 
 OBJECTS			=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 
