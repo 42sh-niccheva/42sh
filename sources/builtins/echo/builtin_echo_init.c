@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:09:38 by llapillo          #+#    #+#             */
-/*   Updated: 2016/09/06 13:28:04 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/09 10:16:51 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_command		*builtin_echo_init(void)
 	add_option_to(command, new_option("E", "",
 								"disable interpretation of backslash escapes "
 								"(default)"));
-	add_option_to(command, new_option("", "help",
+	add_option_to(command, new_option("h", "help",
 								"display this help and exit"));
 	return (command);
 }
