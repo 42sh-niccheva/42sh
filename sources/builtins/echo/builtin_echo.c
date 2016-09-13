@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:09:38 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/09 15:38:32 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/13 14:31:46 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,64 @@
 #include "hashtable.h"
 #include "general.h"
 
-static int		echo_var_env(const char *arg, int *i)
-{
-	int			start;
-	char		*key;
-	t_hashtable	*var_env;
+/* static int		echo_var_env(const char *arg, int *i) */
+/* { */
+/* 	int			start; */
+/* 	char		*key; */
+/* 	t_hashtable	*var_env; */
 
-	start = *i;
-	key = NULL;
-	while (arg[*i] == '_' || ft_isalnum(arg[*i]))
+/* 	start = *i; */
+/* 	while (arg[*i] && (arg[*i] == '_' || ft_isalnum(arg[*i]))) */
+/* 		++(*i); */
+/* 	key = ft_strnew(*i - start); */
+/* 	key = ft_strncpy(key, &arg[start], (*i - start)); */
+/* 	if ((var_env = hashtable_search_key(g_env, key)) != NULL) */
+/* 	{ */
+/* 		ft_putstr(var_env->value); */
+/* 		hashtable_delete_entry(&var_env); */
+/* 	} */
+/* 	ft_strdel(&key); */
+/* 	--(*i); */
+/* 	return (0); */
+/* } */
+
+static void		echo_char_octal(const char *num, char *result, int pow, int len)
+{
+	int		p;
+	int		i;
+
+	p = 1;
+	i = pow;
+	if (len < 0)
+		return ;
+	while (i > 0)
+	{
+		p *= 8;
+		--i;
+	}
+	*result += ((num[len] - 48) * p);
+	++pow;
+	echo_char_octal(num, result, pow, --len);
+}
+
+static int		echo_char_num(const char *arg, int *i)
+{
+	char	*num;
+	int		start;
+	char	result;
+	int		j;
+
+	j = 0;
+	start = ++(*i);
+	result = 0;
+	while (arg[*i] && ft_isdigit(arg[*i]) && (*i - start) < 3)
 		++(*i);
-	key = ft_strncpy(key, &arg[start], (*i - start));
-	if ((var_env = hashtable_search_key(g_env, key)) != NULL)
-		ft_putstr(var_env->value);
-	ft_strdel(&key);
-	hashtable_delete_entry(&var_env);
+	num = ft_strnew(*i - start);
+	num = ft_strncpy(num, &arg[start], (*i - start));
+	echo_char_octal(num, &result, 0, ft_strlen(num) - 1);
+	ft_putchar(result);
+	ft_strdel(&num);
+	--(*i);
 	return (0);
 }
 
@@ -40,6 +83,8 @@ static int		echo_char_special(const char *arg, int *i)
 
 	if (arg[*i] == 'c')
 		return (1);
+	else if (arg[*i] == '0')
+		return (echo_char_num(arg, i));
 	j = 0;
 	while (j < 7)
 	{
@@ -67,12 +112,12 @@ static int		display_arg(t_command *command, const char *arg)
 	value = 0;
 	while (arg[i])
 	{
-		if (arg[i] == '$')
+/*		if (arg[i] == '$')
 		{
 			++i;
 			value = echo_var_env(arg, &i);
-		}
-		else if (arg[i] == '\\' && is_active(command, "e")
+			}*/
+		if (arg[i] == '\\' && is_active(command, "e")
 				&& !is_active(command, "E"))
 		{
 			++i;
