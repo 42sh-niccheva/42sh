@@ -6,34 +6,13 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:09:38 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/13 14:31:46 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/13 15:28:44 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins/builtin_echo.h"
 #include "hashtable.h"
 #include "general.h"
-
-/* static int		echo_var_env(const char *arg, int *i) */
-/* { */
-/* 	int			start; */
-/* 	char		*key; */
-/* 	t_hashtable	*var_env; */
-
-/* 	start = *i; */
-/* 	while (arg[*i] && (arg[*i] == '_' || ft_isalnum(arg[*i]))) */
-/* 		++(*i); */
-/* 	key = ft_strnew(*i - start); */
-/* 	key = ft_strncpy(key, &arg[start], (*i - start)); */
-/* 	if ((var_env = hashtable_search_key(g_env, key)) != NULL) */
-/* 	{ */
-/* 		ft_putstr(var_env->value); */
-/* 		hashtable_delete_entry(&var_env); */
-/* 	} */
-/* 	ft_strdel(&key); */
-/* 	--(*i); */
-/* 	return (0); */
-/* } */
 
 static void		echo_char_octal(const char *num, char *result, int pow, int len)
 {
@@ -50,8 +29,7 @@ static void		echo_char_octal(const char *num, char *result, int pow, int len)
 		--i;
 	}
 	*result += ((num[len] - 48) * p);
-	++pow;
-	echo_char_octal(num, result, pow, --len);
+	echo_char_octal(num, result, ++pow, --len);
 }
 
 static int		echo_char_num(const char *arg, int *i)
@@ -112,11 +90,6 @@ static int		display_arg(t_command *command, const char *arg)
 	value = 0;
 	while (arg[i])
 	{
-/*		if (arg[i] == '$')
-		{
-			++i;
-			value = echo_var_env(arg, &i);
-			}*/
 		if (arg[i] == '\\' && is_active(command, "e")
 				&& !is_active(command, "E"))
 		{
