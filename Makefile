@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/08 11:37:19 by llapillo         ###   ########.fr        #
+#    Updated: 2016/09/15 12:40:38 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,16 +26,19 @@ LIBFT			=	libraries/libft/
 LIBLIST			=	libraries/liblist/
 LIBREADLINE		=	libraries/libreadline/
 LIBJSON			=	libraries/libjson/
+LIBOPTION		=	libraries/liboption/
 
 INCLUDES		=	-I./includes/
 INCLUDES		+=	-I$(LIBFT)includes/
 INCLUDES		+=	-I$(LIBLIST)includes/
 INCLUDES		+=	-I$(LIBREADLINE)includes/
 INCLUDES		+=	-I$(LIBJSON)includes/
+INCLUDES		+=	-I$(LIBOPTION)includes/
 
 LIBRARIES		=	-L$(BUILD)/$(LIBFT) -lft
 LIBRARIES		+=	-L$(BUILD)/$(LIBLIST) -llist
 LIBRARIES		+=	-L$(BUILD)/$(LIBREADLINE) -lreadline
+LIBRARIES		+=	-L$(BUILD)/$(LIBOPTION) -lreadline
 #LIBRARIES		+=	-L$(BUILD)/$(LIBJSON) -ljson
 
 CDPATH			=	builtins/cd/
@@ -92,6 +95,7 @@ makelib: clone_submodules
 	make BUILD=$(BUILD)/$(LIBFT) -C $(LIBFT)
 	make BUILD=$(BUILD)/$(LIBLIST) -C $(LIBLIST)
 	make BUILD=$(BUILD)/$(LIBREADLINE) -C $(LIBREADLINE)
+	make BUILD=$(BUILD)/$(LIBOPTION) -C $(LIBOPTION)
 #	make BUILD=$(BUILD)/$(LIBJSON) -C $(LIBJSON)
 
 $(BUILD)/$(NAME): $(OBJECTS)
@@ -124,6 +128,7 @@ cleanlib:
 	@make BUILD=$(BUILD)/liblist -C $(LIBLIST) fclean
 	@make BUILD=$(BUILD)/libreadline -C $(LIBREADLINE) fclean
 	@make BUILD=$(BUILD)/libjson -C $(LIBJSON) fclean
+	@make BUILD=$(BUILD)/libjson -C $(LIBOPTION) fclean
 
 all_clean: fclean cleanlib
 	@rm -rf $(BUILD)
