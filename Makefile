@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/15 12:40:38 by niccheva         ###   ########.fr        #
+#    Updated: 2016/09/15 12:47:15 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -38,7 +38,7 @@ INCLUDES		+=	-I$(LIBOPTION)includes/
 LIBRARIES		=	-L$(BUILD)/$(LIBFT) -lft
 LIBRARIES		+=	-L$(BUILD)/$(LIBLIST) -llist
 LIBRARIES		+=	-L$(BUILD)/$(LIBREADLINE) -lreadline
-LIBRARIES		+=	-L$(BUILD)/$(LIBOPTION) -lreadline
+LIBRARIES		+=	-L$(BUILD)/$(LIBOPTION) -loption
 #LIBRARIES		+=	-L$(BUILD)/$(LIBJSON) -ljson
 
 CDPATH			=	builtins/cd/
