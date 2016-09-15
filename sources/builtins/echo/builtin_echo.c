@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:09:38 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/13 15:28:44 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/15 10:44:05 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		echo_char_octal(const char *num, char *result, int pow, int len)
 		p *= 8;
 		--i;
 	}
-	*result += ((num[len] - 48) * p);
+	*result += ((num[len] - '0') * p);
 	echo_char_octal(num, result, ++pow, --len);
 }
 
