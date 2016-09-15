@@ -13,6 +13,9 @@
 #ifndef BUILTIN_ECHO_H
 # define BUILTIN_ECHO_H
 
-int		builtin_echo(int argc, const char **argv, char **env);
+# include "liboption.h"
+
+int				builtin_echo(int argc, const char **argv, char **env);
+t_command		*builtin_echo_init(void);
 
 #endif
