@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 14:02:31 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/08 16:17:44 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/15 11:49:28 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			main(int argc, char **argv, char **env)
 	(void)argv;
 	init(env);
 	cd_test();
-	echo_test();
+	echo_test(env);
 	env_test();
 	exit_test();
 	setenv_test(env);

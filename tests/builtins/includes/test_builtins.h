@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 15:06:51 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/08 16:08:34 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/15 11:02:44 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void		header_test(const char *test);
 
 void		cd_test(void);
-void		echo_test(void);
+void		echo_test(char **env);
 void		env_test(void);
 void		exit_test(void);
 void		setenv_test(char **env);

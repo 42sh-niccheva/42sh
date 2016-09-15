@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 14:53:45 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/08 16:15:33 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/15 10:57:12 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void		setenv_test(char **env)
 	args[1] = ft_strdup("key");
 	args[2] = ft_strdup("value");
 	args[3] = 0;
-
-//	printf("%s•\e[m ", KRED);
-//	printf("%s•\e[m \n", KGRN);
 
 	/*
 	**	Add new value in environment
