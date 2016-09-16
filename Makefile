@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/15 12:47:15 by niccheva         ###   ########.fr        #
+#    Updated: 2016/09/16 11:18:29 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,8 +49,10 @@ SETENVPATH		=	builtins/setenv/
 UNSETENVPATH	=	builtins/unsetenv/
 
 CD				=	$(CDPATH)builtin_cd.c
+CD				+=	$(CDPATH)builtin_cd_init.c
 
 ECHO			=	$(ECHOPATH)builtin_echo.c
+ECHO			+=	$(ECHOPATH)builtin_echo_init.c
 
 ENV				=	$(ENVPATH)builtin_env.c
 
@@ -64,7 +66,7 @@ UNSETENV		=	$(UNSETENVPATH)builtin_unsetenv.c
 
 BUILTINS		=	$(CD)
 BUILTINS		+=	$(ECHO)
-BUILTINS		+=	$(ENV)
+#BUILTINS		+=	$(ENV)
 BUILTINS		+=	$(EXIT)
 BUILTINS		+=	$(SETENV)
 BUILTINS		+=	$(UNSETENV)
