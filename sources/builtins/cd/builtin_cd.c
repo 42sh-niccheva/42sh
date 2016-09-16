@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:08:57 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/16 12:01:54 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/09/16 14:17:24 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,38 @@
 #include "hashtable.h"
 #include "general.h"
 #include <errno.h>
+#include <sys/syslimits.h>
 
-static void	cd_move_to(const char *target)
+static void	change_var_env(const char *var_name, const char *value)
 {
-//	t_hashtable	*var;
+	t_hashtable	*var;
 
+	var = hashtable_search_key(g_env, var_name);
+	if (var)
+	{
+		ft_strdel(&(var->value));
+		var->value = ft_strdup(value);
+	}
+	else
+		hashtable_add(g_env, hashtable_new(var_name, value));
+}
+
+static int	cd_move_to(const char *target)
+{
+	char *path;
+
+	path = NULL;
+	path = getcwd(path, PATH_MAX);
 	if (chdir(target) < 0)
+	{
 		ft_perror("cd");
+		return (1);
+	}
+	change_var_env("OLDPWD", path);
+	ft_strdel(&path);
+	path = getcwd(path, PATH_MAX);
+	change_var_env("PWD", path);
+	return (0);
 }
 
 static int	cd_to_var_env(const char *program, const char *var_env)
@@ -32,7 +57,9 @@ static int	cd_to_var_env(const char *program, const char *var_env)
 	{
 		if (ft_strequ(var->value, ""))
 			return (0);
-		cd_move_to(var->value);
+		if (ft_strequ(var_env, "OLDPWD"))
+			ft_putendl(var->value);
+		return (cd_move_to(var->value));
 	}
 	else
 	{
@@ -61,7 +88,7 @@ int			builtin_cd(int argc, const char **argv, char **env)
 	else
 	{
 		i = skip_options(argv);
-		cd_move_to(argv[i]);
+		return (cd_move_to(argv[i]));
 	}
 	return (0);
 }
