@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/16 11:18:29 by llapillo         ###   ########.fr        #
+#    Updated: 2016/12/01 12:52:01 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,6 +50,9 @@ UNSETENVPATH	=	builtins/unsetenv/
 
 CD				=	$(CDPATH)builtin_cd.c
 CD				+=	$(CDPATH)builtin_cd_init.c
+CD				+=	$(CDPATH)builtin_cd_symlink.c
+CD				+=	$(CDPATH)builtin_cd_is_symlink.c
+CD				+=	$(CDPATH)builtin_cd_clean_path.c
 
 ECHO			=	$(ECHOPATH)builtin_echo.c
 ECHO			+=	$(ECHOPATH)builtin_echo_init.c

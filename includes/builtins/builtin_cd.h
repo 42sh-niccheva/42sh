@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:00:19 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/16 11:12:28 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/01 12:53:59 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include "liboption.h"
 
-int				builtin_cd(int argc, const char **argv, char **env);
+int				builtin_cd(int argc, const char **argv, const char **env);
 t_command		*builtin_cd_init(void);
+int				builtin_cd_symlink(const char *target);
+bool			builtin_cd_is_symlink(const char *target);
+char			*builtin_cd_clean_path(const char *path, const char *target);
 
 #endif

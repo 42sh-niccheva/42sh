@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 10:08:57 by niccheva          #+#    #+#             */
-/*   Updated: 2016/09/16 14:17:24 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/01 11:47:31 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	cd_move_to(const char *target)
 	char *path;
 
 	path = NULL;
-	path = getcwd(path, PATH_MAX);
+	path = getcwd(NULL, 0);
 	if (chdir(target) < 0)
 	{
 		ft_perror("cd");
@@ -43,7 +43,7 @@ static int	cd_move_to(const char *target)
 	}
 	change_var_env("OLDPWD", path);
 	ft_strdel(&path);
-	path = getcwd(path, PATH_MAX);
+	path = getcwd(NULL, 0);
 	change_var_env("PWD", path);
 	return (0);
 }
@@ -72,7 +72,7 @@ static int	cd_to_var_env(const char *program, const char *var_env)
 	return (0);
 }
 
-int			builtin_cd(int argc, const char **argv, char **env)
+int			builtin_cd(int argc, const char **argv, const char **env)
 {
 	t_command	*command;
 	int			i;
@@ -88,7 +88,10 @@ int			builtin_cd(int argc, const char **argv, char **env)
 	else
 	{
 		i = skip_options(argv);
-		return (cd_move_to(argv[i]));
+		if (is_active(command, "P") || !is_active(command, "L")
+			|| !builtin_cd_is_symlink(argv[i]))
+			return (cd_move_to(argv[i]));
+		return (builtin_cd_symlink(argv[i]));
 	}
 	return (0);
 }
