@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 11:50:47 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/01 12:56:48 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/01 14:25:09 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	change_var_env(const char *var_name, const char *value)
 		hashtable_add(g_env, hashtable_new(var_name, value));
 }
 
-int		builtin_cd_symlink(const char *target)
+int			builtin_cd_symlink(const char *target)
 {
 	char	*path;
 	char	*new_path;

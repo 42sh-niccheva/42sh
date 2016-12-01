@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 12:47:58 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/01 14:03:07 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/01 14:24:22 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,24 @@
 char	*change_path(char **path, const char *target, char *start, char *end)
 {
 	char	*new_path;
+	char	*elem;
+	char	*tmp;
 
-	(void)new_path;
-	ft_putendl(ft_strsub(target, start - target, end - start));
-
-	return (*path);
-
+	new_path = NULL;
+	elem = ft_strsub(target, start - target, end - start);
+	if (ft_strequ(elem, ".."))
+		new_path = ft_strsub(*path, 0, ft_strrchr(*path, '/') - *path);
+	else if (ft_strequ(elem, "."))
+		new_path = ft_strdup(*path);
+	else
+	{
+		tmp = ft_strjoin(*path, "/");
+		new_path = ft_strjoin(tmp, elem);
+		ft_strdel(&tmp);
+	}
+	ft_strdel(path);
+	ft_strdel(&elem);
+	return (new_path);
 }
 
 char	*new_path_with(const char *path, const char *target)
@@ -32,7 +44,6 @@ char	*new_path_with(const char *path, const char *target)
 	char	*ptr_end;
 	char	*tmp;
 
-	ft_putendl("HERE");
 	new_path = ft_strdup(path);
 	if (new_path[ft_strlen(new_path) - 1] == '/')
 		new_path[ft_strlen(new_path) - 1] = 0;
@@ -42,7 +53,6 @@ char	*new_path_with(const char *path, const char *target)
 		new_path = change_path(&new_path, target, ptr_start, ptr_end);
 		ptr_start = ptr_end + 1;
 	}
-	ft_putendl("END");
 	tmp = ft_strjoin(new_path, "/");
 	ft_strdel(&new_path);
 	new_path = tmp;
@@ -84,26 +94,6 @@ char	*builtin_cd_clean_path(const char *path, const char *target)
 
 	new_path = NULL;
 	new_target = clean_target(target);
-	ft_putendl(target);
-	ft_putendl(new_target);
 	new_path = new_path_with(path, new_target);
 	return (new_path);
 }
-
-/*char	*builtin_cd_clean_path(const char *path, const char *target)
-{
-	char	*new_path;
-	char	*new_target;
-	char	*tmp;
-
-	tmp = NULL;
-	new_target = ft_strreplace(target, "/./", "/");
-	ft_putendl(new_target);
-	new_path = NULL;
-	if (path[ft_strlen(path) - 1] != '/')
-		tmp = ft_strjoin("/", new_target);
-	else
-		tmp = ft_strdup(new_target);
-	new_path = ft_strjoin(path, tmp);
-	return (new_path);
-	}*/
