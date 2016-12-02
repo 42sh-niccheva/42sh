@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/09/15 12:47:15 by niccheva         ###   ########.fr        #
+#    Updated: 2016/12/02 15:31:29 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,6 +40,7 @@ LIBRARIES		+=	-L$(BUILD)/$(LIBLIST) -llist
 LIBRARIES		+=	-L$(BUILD)/$(LIBREADLINE) -lreadline
 LIBRARIES		+=	-L$(BUILD)/$(LIBOPTION) -loption
 #LIBRARIES		+=	-L$(BUILD)/$(LIBJSON) -ljson
+LIBRARIES		+=	-lncurses
 
 CDPATH			=	builtins/cd/
 ECHOPATH		=	builtins/echo/
@@ -47,6 +48,7 @@ ENVPATH			=	builtins/env/
 EXITPATH		=	builtins/exit/
 SETENVPATH		=	builtins/setenv/
 UNSETENVPATH	=	builtins/unsetenv/
+TERMCAPSPATH	=	termcaps/
 
 CD				=	$(CDPATH)builtin_cd.c
 
@@ -69,7 +71,12 @@ BUILTINS		+=	$(EXIT)
 BUILTINS		+=	$(SETENV)
 BUILTINS		+=	$(UNSETENV)
 
-SOURCES			=	$(BUILTINS)
+TERMCAPS		=	termcaps/termcaps_init.c
+TERMCAPS		+=	termcaps/termcaps_reset.c
+TERMCAPS		+=	termcaps/handle_functions.c
+
+#SOURCES			=	$(BUILTINS)
+SOURCES			=	$(TERMCAPS)
 SOURCES			+=	main.c
 SOURCES			+=	sh_quit.c
 
@@ -113,6 +120,7 @@ $(BUILD)/$(DOBJECTS)%.o: $(DSOURCES)%.c
 	@mkdir -p $(BUILD)/$(DOBJECTS)$(EXITPATH)
 	@mkdir -p $(BUILD)/$(DOBJECTS)$(SETENVPATH)
 	@mkdir -p $(BUILD)/$(DOBJECTS)$(UNSETENVPATH)
+	@mkdir -p $(BUILD)/$(DOBJECTS)$(TERMCAPSPATH)
 	@echo "\033[0;32m$< compiled:\t\033[0;m\c"
 	$(CC) $(CFLAGS) $(DEPENDS) -o $@ -c $< $(INCLUDES)
 
