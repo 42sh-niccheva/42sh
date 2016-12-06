@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/12/05 18:00:05 by llapillo         ###   ########.fr        #
+#    Updated: 2016/12/06 18:12:30 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -79,7 +79,7 @@ TERMCAPS		+=	termcaps/handle_ctrl_d.c
 TERMCAPS		+=	termcaps/handle_add_entry_to.c
 TERMCAPS		+=	termcaps/handle_arrows.c
 TERMCAPS		+=	termcaps/tputs_char.c
-TERMCAPS		+=	termcaps/get_nclumns_term.c
+TERMCAPS		+=	termcaps/get_ncolumns_term.c
 
 #SOURCES			=	$(BUILTINS)
 SOURCES			=	$(TERMCAPS)

@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 14:26:16 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/05 17:57:38 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:04:36 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_entry_history_at(t_prompt *prompt, int i)
 	history = get_history_line_from(i);
 	if (history != NULL)
 	{
-		ft_bzero(prompt->line, ARG_MAX);
+		ft_bzero(prompt->line, prompt->size_total);
 		ft_memcpy(prompt->line, history, ft_strlen(history));
 	}
 	return (history);
@@ -52,6 +52,11 @@ int		handle_arrow_up(t_prompt *prompt)
 {
 	char	*history;
 
+/*	if (prompt->num_line_history == 0)
+	{
+		++(prompt->num_line_history);
+		add_history(prompt->line);
+		}*/
 	history = get_entry_history_at(prompt, prompt->num_line_history + 1);
 	if (history != NULL)
 	{

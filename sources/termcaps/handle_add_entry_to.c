@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 13:56:04 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/05 18:02:39 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:00:26 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static void		shift_end_from(char *line, int position)
 	}
 	}*/
 
+static void		increase_prompt(t_prompt *prompt)
+{
+	char	*save;
+
+	prompt->size_total += SIZE_LINE;
+	save = ft_strnew(prompt->size_total);
+	ft_bzero(save, prompt->size_total);
+	ft_memcpy(save, prompt->line, prompt->lenght);
+}
+
 void			handle_add_entry_to(unsigned int entry, t_prompt *prompt)
 {
 	char	*line;
@@ -43,6 +53,9 @@ void			handle_add_entry_to(unsigned int entry, t_prompt *prompt)
 
 	if (!ft_isprint(entry))
 		return ;
+	if ((prompt->lenght + 1) >= prompt->size_total)
+		increase_prompt(prompt);
+	++(prompt->lenght);
 	line = prompt->line;
 	position = prompt->cursor_position;
 	shift_end_from(line, position);

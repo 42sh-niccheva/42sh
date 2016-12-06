@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 13:56:38 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/05 17:59:42 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/06 18:33:31 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 # include "general.h"
 # include "history.h"
 # include <termios.h>
+# include <termcap.h>
+# include <sys/ioctl.h>
 # include <unistd.h>
 # include <term.h>
 # include <limits.h>
 
+# define SIZE_LINE 4096
 # define ESCAPE 27
 # define UP 4283163
 # define DOWN 4348699
@@ -41,9 +44,17 @@
 typedef struct s_prompt		t_prompt;
 typedef struct s_functions	t_functions;
 
+/*
+** lenght: Size of user's entry
+** size_total: Size buffer
+** cursor_position: position of the cursor in the buffer
+*/
+
 struct		s_prompt
 {
-	char	line[ARG_MAX];
+	char	*line;
+	int		lenght;
+	int		size_total;
 	int		num_line_history;
 	int		cursor_position;
 };

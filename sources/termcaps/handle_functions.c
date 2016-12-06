@@ -6,14 +6,14 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 15:29:08 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/05 17:45:25 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/06 10:51:18 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "termcaps.h"
 
 #include <stdio.h>
-int		handle_functions(unsigned int entry, t_prompt *prompt)
+static int		handle_functions1(unsigned int entry, t_prompt *prompt)
 {
 	int					i;
 	static t_functions	functions[] = {
@@ -32,6 +32,16 @@ int		handle_functions(unsigned int entry, t_prompt *prompt)
 			return (functions[i].function(prompt));
 		++i;
 	}
+	return (-1);
+}
+
+int				handle_functions(unsigned int entry, t_prompt *prompt)
+{
+	int		value;
+
+	value = 0;
+	if ((value = handle_functions1(entry, prompt)) >= 0)
+		return (value);
 	handle_add_entry_to(entry, prompt);
 	return (1);
 }
