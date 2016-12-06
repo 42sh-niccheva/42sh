@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 13:56:38 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/06 18:33:31 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:22:16 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_functions	t_functions;
 struct		s_prompt
 {
 	char	*line;
+	char	*save;
 	int		lenght;
 	int		size_total;
 	int		num_line_history;
