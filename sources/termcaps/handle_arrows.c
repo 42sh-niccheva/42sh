@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 14:26:16 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/06 19:26:24 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/06 19:53:50 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ int		handle_arrow_up(t_prompt *prompt)
 		tputs(tgetstr("dl", NULL), 1, tputs_char);
 		tputs(tgetstr("cr", NULL), 1, tputs_char);
 		tputs(prompt->line, 1, tputs_char);
-		tputs(tgetstr("cr", NULL), 1, tputs_char);
-		prompt->cursor_position = 0;
+//		tputs(tgetstr("cr", NULL), 1, tputs_char);
+		prompt->lenght = ft_strlen(prompt->line);
+		prompt->cursor_position = prompt->lenght;
 		ft_strdel(&history);
 	}
 	return (1);
@@ -85,8 +86,9 @@ int		handle_arrow_down(t_prompt *prompt)
 			ft_strdel(&(prompt->save));
 		}
 		tputs(prompt->line, 1, tputs_char);
-		tputs(tgetstr("cr", NULL), 1, tputs_char);
-		prompt->cursor_position = 0;
+		prompt->lenght = ft_strlen(prompt->line);
+//		tputs(tgetstr("cr", NULL), 1, tputs_char);
+		prompt->cursor_position = prompt->lenght;
 		ft_strdel(&history);
 	}
 /*	else
