@@ -17,6 +17,7 @@ int main(int ac, char **av, const char **env)
 	add_history("ligne 3");
 	add_history("ligne 4");
 	add_history("ligne 5");
+	add_history("  ligne 5           oruhg erug herhg e g    ergeg       ");
 	g_env = hashtable_create_from_tab(env, "=");
 	if (!termcaps_init())
 		return (1);
@@ -25,6 +26,7 @@ int main(int ac, char **av, const char **env)
 	{
 		ft_bzero(buff, 4);
 		read(0, buff, 3);
+//		printf("%d\n", *(unsigned int *)buff);
 		if (!handle_functions(*(unsigned int *)buff, &prompt))
 			break ;
 	}

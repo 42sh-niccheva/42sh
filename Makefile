@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/12/06 20:08:41 by llapillo         ###   ########.fr        #
+#    Updated: 2016/12/07 09:11:53 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -81,6 +81,7 @@ TERMCAPS		+=	termcaps/handle_arrows.c
 TERMCAPS		+=	termcaps/handle_return.c
 TERMCAPS		+=	termcaps/handle_start_line.c
 TERMCAPS		+=	termcaps/handle_end_line.c
+TERMCAPS		+=	termcaps/handle_move_word.c
 TERMCAPS		+=	termcaps/tputs_char.c
 TERMCAPS		+=	termcaps/get_ncolumns_term.c
 
