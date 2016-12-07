@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 15:29:08 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/07 09:23:04 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:04:00 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int		handle_functions1(unsigned int entry, t_prompt *prompt)
 		{CTRL_E, &handle_end_line},
 		{CTRL_B, &handle_ctrl_b},
 		{CTRL_N, &handle_ctrl_n},
+		{CTRL_L, &handle_ctrl_l},
 		{0, NULL}
 	};
 

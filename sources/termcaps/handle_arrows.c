@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 14:26:16 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/06 19:53:50 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/07 13:11:18 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int		handle_arrow_up(t_prompt *prompt)
 	if (history != NULL)
 	{
 		++(prompt->num_line_history);
-		tputs(tgetstr("dl", NULL), 1, tputs_char);
+		handle_start_line(prompt);
+		tputs(tgetstr("cd", NULL), 1, tputs_char);
+//		tputs(tgetstr("dl", NULL), 1, tputs_char);
 		tputs(tgetstr("cr", NULL), 1, tputs_char);
 		tputs(prompt->line, 1, tputs_char);
 //		tputs(tgetstr("cr", NULL), 1, tputs_char);
@@ -77,7 +79,9 @@ int		handle_arrow_down(t_prompt *prompt)
 	if (history != NULL || prompt->num_line_history == 1)
 	{
 		--(prompt->num_line_history);
-		tputs(tgetstr("dl", NULL), 1, tputs_char);
+		handle_start_line(prompt);
+		tputs(tgetstr("cd", NULL), 1, tputs_char);
+//		tputs(tgetstr("dl", NULL), 1, tputs_char);
 		tputs(tgetstr("cr", NULL), 1, tputs_char);
 		if (prompt->num_line_history == 0 && prompt->save)
 		{

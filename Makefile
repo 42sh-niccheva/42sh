@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 10:17:09 by niccheva          #+#    #+#              #
-#    Updated: 2016/12/07 09:11:53 by llapillo         ###   ########.fr        #
+#    Updated: 2016/12/07 13:23:50 by llapillo         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -76,6 +76,7 @@ TERMCAPS		+=	termcaps/termcaps_reset.c
 TERMCAPS		+=	termcaps/handle_functions.c
 TERMCAPS		+=	termcaps/init_prompt.c
 TERMCAPS		+=	termcaps/handle_ctrl_d.c
+TERMCAPS		+=	termcaps/handle_ctrl_l.c
 TERMCAPS		+=	termcaps/handle_add_entry_to.c
 TERMCAPS		+=	termcaps/handle_arrows.c
 TERMCAPS		+=	termcaps/handle_return.c

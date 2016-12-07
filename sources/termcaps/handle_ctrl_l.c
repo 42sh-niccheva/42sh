@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_return.c                                    :+:      :+:    :+:   */
+/*   handle_ctrl_l.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 13:45:34 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/07 13:57:28 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:04:55 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "termcaps.h"
 
-int		handle_return(t_prompt *prompt)
+int		handle_ctrl_l(t_prompt *prompt)
 {
-	tputs(tgetstr("do", NULL), 1, tputs_char);
-	if (!ft_strequ(ft_strtrim(prompt->line), ""))
-		add_history(prompt->line);
-	ft_bzero(prompt->line, prompt->lenght);
-	if (prompt->save)
-		ft_strdel(&(prompt->save));
-	prompt->lenght = 0;
-	prompt->num_line_history = 0;
-	prompt->cursor_position = 0;
+	tputs(tgetstr("cl", NULL), 1, tputs_char);
+	tputs(prompt->line, 1, tputs_char);
 	return (1);
 }

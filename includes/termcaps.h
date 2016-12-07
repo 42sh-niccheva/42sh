@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 13:56:38 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/07 09:22:31 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/07 13:23:32 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int			handle_start_line(t_prompt *prompt);
 int			handle_end_line(t_prompt *prompt);
 int			handle_ctrl_b(t_prompt *prompt);
 int			handle_ctrl_n(t_prompt *prompt);
+int			handle_ctrl_l(t_prompt *prompt);
 int			tputs_char(int c);
 
 #endif

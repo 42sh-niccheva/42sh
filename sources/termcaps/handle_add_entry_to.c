@@ -6,7 +6,7 @@
 /*   By: llapillo <llapillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 13:56:04 by llapillo          #+#    #+#             */
-/*   Updated: 2016/12/06 19:00:26 by llapillo         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:05:16 by llapillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		shift_end_from(char *line, int position)
 	int		cursor;
 
 	cursor = ft_strlen(line);
-	while (cursor != position)
+	while (cursor > position)
 	{
 		line[cursor] = line[cursor - 1];
 		--cursor;
@@ -55,11 +55,11 @@ void			handle_add_entry_to(unsigned int entry, t_prompt *prompt)
 		return ;
 	if ((prompt->lenght + 1) >= prompt->size_total)
 		increase_prompt(prompt);
-	++(prompt->lenght);
 	line = prompt->line;
 	position = prompt->cursor_position;
 	shift_end_from(line, position);
 	line[position] = entry;
+	++(prompt->lenght);
 	++(prompt->cursor_position);
 	tputs(tgetstr("sc", NULL), 1, tputs_char);
 	tputs(&line[position], 1, tputs_char);
